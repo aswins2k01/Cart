@@ -11,3 +11,4 @@ backend/config/config.env
 # Config Files
 .prettierrc
 eslint.config.mjs
+.prettierignore
