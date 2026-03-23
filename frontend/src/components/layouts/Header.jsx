@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "./search";
+import Search from "./Search";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DropdownButton, Dropdown, Image } from "react-bootstrap";
