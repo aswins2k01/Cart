@@ -1,0 +1,35 @@
+{
+  "name": "cart",
+  "version": "1.0.0",
+  "description": "mern stack project",
+  "license": "ISC",
+  "author": "Aswin sundararajan",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon backend/server.js",
+    "dev": "set NODE_ENV=development&&nodemon backend/server.js",
+    "prod": "set NODE_ENV=production&&nodemon backend/server.js",
+    "seeder": "node backend/utils/seeder.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.1.5",
+    "multer": "^2.1.1",
+    "nodemailer": "^8.0.1",
+    "nodemon": "^3.1.11",
+    "validator": "^13.15.26"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^10.0.1",
+    "globals": "^17.3.0",
+    "prettier": "3.8.1"
+  }
+}

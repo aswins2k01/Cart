@@ -1,0 +1,13 @@
+# Dependencies (Folders)
+node_modules/
+
+# Production Build (Folder)
+frontend/dist/
+
+# Environment Variables 
+backend/config/config.env
+.env
+
+# Config Files
+.prettierrc
+eslint.config.mjs
