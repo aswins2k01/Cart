@@ -26,10 +26,7 @@ export default function Header() {
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
           <Link to={"/"}>
-            <img
-              width="150px"
-              src="/Gemini_Generated_Image_22tpvy22tpvy22tp.png"
-            />
+            <img width="150px" src="/logo.png" />
           </Link>
         </div>
       </div>
