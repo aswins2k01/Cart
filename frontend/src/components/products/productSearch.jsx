@@ -104,10 +104,11 @@ export default function ProductSearch() {
             <h1 id="products_heading">Search Products</h1>
             <section id="products" className="container-fluid mt-5">
               <div className="row g-0">
-                <div className="col-6 col-md-3 mb-5  mt-5">
+                <div className="col-12 col-md-3 mb-5  mt-5">
                   <div
                     className="pl-0 ml-0 mb-5 pr-5"
                     onMouseUp={() => setChangedPrice(price)}
+                    onTouchEnd={() => setChangedPrice(price)}
                   >
                     <Slider
                       range
@@ -138,6 +139,8 @@ export default function ProductSearch() {
                           style={{
                             cursor: "pointer",
                             listStyleType: "none",
+                            padding: "7px",
+                            fontSize: "16px",
                           }}
                           key={category}
                           onClick={() => {
@@ -172,7 +175,7 @@ export default function ProductSearch() {
                     </ul>
                   </div>
                 </div>
-                <div className="col-6 col-md-9">
+                <div className="col-12 col-md-9">
                   <div className="row">
                     {products?.map((product) => (
                       <Product col={4} key={product._id} product={product} />

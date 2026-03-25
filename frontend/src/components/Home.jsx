@@ -74,28 +74,32 @@ export default function Home() {
           <h1 id="products_heading">Latest Products</h1>
           <section id="products" className="container mt-5">
             <div className="row">
-              <div className="col-6 col-md-3 mb-5  mt-5">
-                <div className="mt-2" style={{ width: "20px" }}>
-                  <h3 className="mb-3"> Categories</h3>
-                  <ul className="pl-0">
-                    {categories.map((category) => (
-                      <li
-                        style={{
-                          cursor: "pointer",
-                          listStyleType: "none",
-                        }}
-                        key={category}
-                        onClick={() => handleCategoryClick(category)}
-                      >
-                        {category}
-                      </li>
-                    ))}
-                  </ul>
+              <div className="col-12 col-md-3 mb-5  mt-5">
+                <h3 className="mb-3"> Categories</h3>
+                <ul className="pl-0">
+                  {categories.map((category) => (
+                    <li
+                      style={{
+                        cursor: "pointer",
+                        listStyleType: "none",
+                        padding: "7px 0",
+                        fontSize: "16px",
+                      }}
+                      key={category}
+                      onClick={() => handleCategoryClick(category)}
+                    >
+                      {category}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="col-12 col-md-9 mb-5 mt-5">
+                <div className="row">
+                  {products?.map((product) => (
+                    <Product col={4} key={product._id} product={product} />
+                  ))}
                 </div>
               </div>
-              {products?.map((product) => (
-                <Product col={3} key={product._id} product={product} />
-              ))}
             </div>
           </section>
           {totalItemsCount > 0 && totalItemsCount > resPerPage ? (

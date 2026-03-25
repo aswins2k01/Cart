@@ -668,6 +668,13 @@ footer {
   flex-direction: column;
 }
 
+@media (hover: hover) {
+  .category-list li:hover {
+    color: #fa9c23; 
+    font-weight: bold;
+  }
+}
+
 /* .empty-cart{
   margin-top: 15rem;
   padding-left: 400px;
@@ -678,5 +685,4 @@ footer {
 /* margin-left: 0; */
 /* padding-left: 100px; Ensure no left margin is centering it */
 /* } 
-
 
