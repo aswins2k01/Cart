@@ -5,6 +5,7 @@ const authSlice = createSlice({
   initialState: {
     loading: true,
     isAuthenticated: false,
+    error: "",
   },
   reducers: {
     loginRequest(state) {
