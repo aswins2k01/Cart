@@ -64,13 +64,18 @@ A modern, responsive E-commerce platform built with the **MERN Stack**. This pro
    git clone https://github.com/aswins2k01/Cart.git
 2. Setup Environment Variables:
       Create a config.env file in the backend/config/ directory:
-      PORT=4000  |
-      NODE_ENV=development  |
-      DB_LOCAL_URI=your_mongodb_connection_string |
-      JWT_SECRET=your_jwt_secret  |
-      STRIPE_API_KEY=your_stripe_public_key  |
-      STRIPE_SECRET_KEY=your_stripe_private_key  |
-
+      | Variable | Description |
+      | :--- | :--- |
+      | `PORT` | Your Running PORT number|
+      | `DB_LOCAL_URI` | Your MongoDB Atlas connection string |
+      | `JWT_SECRET` | Secret key for signing JSON Web Tokens |
+      | `STRIPE_API_KEY` | Your Stripe Publishable Key (from Dashboard) |
+      | `STRIPE_SECRET_KEY` | Your Stripe Secret Key (Keep this private!) |
+      | `CLOUDINARY_NAME` | Your CLOUDINARY Name  |
+      | `CLOUDINARY_API_KEY` | Your CLOUDINARY API Key (Keep this private!) |
+      | `CLOUDINARY_SECRET_KEY` | Your CLOUDINARY Secret Key (Keep this private!) |
+      |  Setup a mailer of your choice and add the configs here  |
+       
 3 . Install Dependencies:
     # Install Backend deps
     npm install
