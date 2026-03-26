@@ -161,6 +161,8 @@ export default function ReviewList() {
               hover
               striped
               bordered
+              responsive
+              scrollX
               className="px-3"
             ></MDBDataTable>
           )}

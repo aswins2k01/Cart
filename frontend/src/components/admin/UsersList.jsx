@@ -136,6 +136,8 @@ export default function UsersList() {
                     hover
                     striped
                     bordered
+                    responsive
+                    scrollX
                     className="px-3"
                   ></MDBDataTable>
                 )}

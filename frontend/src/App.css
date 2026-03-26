@@ -535,6 +535,27 @@ footer {
   top: 0;
   z-index: 10;
 }
+
+
+/* On mobile (screens smaller than 768px) */
+@media (max-width: 767px) {
+    .sidebar-wrapper {
+        min-height: auto;
+        height: auto;
+    }
+    
+    #sidebar {
+        padding: 10px;
+    }
+
+    #sidebar ul li {
+        
+        margin-right: 15px;
+    }
+}
+
+
+
 #sidebar {
   min-width: 100%;
   max-width: 100%;

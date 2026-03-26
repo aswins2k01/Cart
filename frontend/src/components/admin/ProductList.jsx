@@ -131,6 +131,8 @@ export default function ProductList() {
               hover
               striped
               bordered
+              responsive
+              scrollX
               className="px-3"
             ></MDBDataTable>
           )}
