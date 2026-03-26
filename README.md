@@ -64,12 +64,12 @@ A modern, responsive E-commerce platform built with the **MERN Stack**. This pro
    git clone https://github.com/aswins2k01/Cart.git
 2. Setup Environment Variables:
       Create a config.env file in the backend/config/ directory:
-      PORT=4000
-      NODE_ENV=development
-      DB_LOCAL_URI=your_mongodb_connection_string
-      JWT_SECRET=your_jwt_secret
-      STRIPE_API_KEY=your_stripe_public_key
-      STRIPE_SECRET_KEY=your_stripe_private_key
+      PORT=4000  |
+      NODE_ENV=development  |
+      DB_LOCAL_URI=your_mongodb_connection_string |
+      JWT_SECRET=your_jwt_secret  |
+      STRIPE_API_KEY=your_stripe_public_key  |
+      STRIPE_SECRET_KEY=your_stripe_private_key  |
 
 3 . Install Dependencies:
     # Install Backend deps
@@ -86,10 +86,8 @@ A modern, responsive E-commerce platform built with the **MERN Stack**. This pro
 
 🛡️ Professional Implementation Notes
       PCI Compliance: Leveraged Stripe’s tokenization to ensure credit card data never touches the application server.
-      
       Performance: Optimized frontend rendering by implementing conditional guard clauses in the checkout components.
-      
-      Documentation: Built with a focus on clean, modular code following the MVC (Model-View-Controller) architecture on the backend.
+      Documentation: Built with a focus on clean, modular code following the MVC (Model-View-Controller) architecture on the backend.      
 
 👤 Author
 Aswin Sundararajan Full-Stack Developer | MERN Specialist 
