@@ -107,7 +107,7 @@ export default function ProductDetails() {
                   <Carousel.Item key={image._id}>
                     <img
                       className="d-block w-100"
-                      src={image.image}
+                      src={image.url || image.image}
                       alt={product.name}
                       height="500"
                       width="500"

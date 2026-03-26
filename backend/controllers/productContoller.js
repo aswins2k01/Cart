@@ -3,6 +3,8 @@ const productModel = require("../models/productmodel");
 const ProductModel = require("../models/productmodel");
 const ApiFeatures = require("../utils/apiFeatures");
 const ErrorHandler = require("../utils/errorHandler");
+const cloudinary = require("../utils/cloudinary");
+const streamifier = require("streamifier");
 
 //  handler functions to handle products
 // /api/v1/products?keyword=(oppo)&category=(Mobile Phones)
@@ -30,30 +32,57 @@ exports.getProducts = catchAsyncError(async (req, res, next) => {
   });
 });
 //for creating the  new products - /api/v1/products
+
 exports.newProducts = catchAsyncError(async (req, res, next) => {
   let images = [];
 
-  let BASE_URL = process.env.BACKEND_URL;
-  if (process.env.NODE_ENV === "production") {
-    BASE_URL = `${req.protocol}://${req.get("host")}`;
-  }
+  if (req.files && req.files.length > 0) {
+    const uploadImage = (file) => {
+      return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "products",
+            width: 500,
+            crop: "scale",
+          },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve({
+              public_id: result.public_id,
+              url: result.secure_url,
+            });
+          },
+        );
+        streamifier.createReadStream(file.buffer).pipe(stream);
+      });
+    };
 
-  if (req.files.length > 0) {
-    req.files.forEach((file) => {
-      let url = `${BASE_URL}/uploads/product/${file.originalname}`;
-      images.push({ image: url });
-    });
+    const uploadPromises = req.files.map((file) => uploadImage(file));
+    images = await Promise.all(uploadPromises);
   }
+  //   // let BASE_URL = process.env.BACKEND_URL;
+  //   // if (process.env.NODE_ENV === "production") {
+  //   //   BASE_URL = `${req.protocol}://${req.get("host")}`;
+  //   // }
+
+  //   // if (req.files.length > 0) {
+  //   //   req.files.forEach((file) => {
+  //   //     let url = `${BASE_URL}/uploads/product/${file.originalname}`;
+  //   //     images.push({ image: url });
+  //   //   });
+  //   // }
 
   req.body.images = images;
   req.body.user = req.user.id;
+
   const product = await ProductModel.create(req.body);
+
   res.status(201).json({
     success: true,
-
     product,
   });
 });
+
 // get single product-/api/v1/product/:id'
 exports.getSingleProduct = catchAsyncError(async (req, res, next) => {
   const product = await ProductModel.findById(req.params.id).populate(
@@ -78,10 +107,16 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
 
   let images = [];
 
-  let BASE_URL = process.env.BACKEND_URL;
-  if (process.env.NODE_ENV === "production") {
-    BASE_URL = `${req.protocol}://${req.get("host")}`;
-  }
+  // let BASE_URL = process.env.BACKEND_URL;
+  // if (process.env.NODE_ENV === "production") {
+  //   BASE_URL = `${req.protocol}://${req.get("host")}`;
+  // }
+  // if (req.files && req.files.length > 0) {
+  //   req.files.forEach((file) => {
+  //     let url = `${BASE_URL}/uploads/product/${file.originalname}`;
+  //     images.push({ image: url });
+  //   });
+  // }
 
   if (
     req.body.isImagesCleared === "false"
@@ -92,10 +127,28 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
   }
 
   if (req.files && req.files.length > 0) {
-    req.files.forEach((file) => {
-      let url = `${BASE_URL}/uploads/product/${file.originalname}`;
-      images.push({ image: url });
-    });
+    const uploadImage = (file) => {
+      return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "products",
+            width: 500,
+            crop: "scale",
+          },
+          (error, result) => {
+            if (error) return reject(error);
+            resolve({
+              public_id: result.public_id,
+              url: result.secure_url,
+            });
+          },
+        );
+        streamifier.createReadStream(file.buffer).pipe(stream);
+      });
+    };
+
+    const uploadPromises = req.files.map((file) => uploadImage(file));
+    images = await Promise.all(uploadPromises);
   }
 
   if (images.length === 0) {

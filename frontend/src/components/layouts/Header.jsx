@@ -45,7 +45,11 @@ export default function Header() {
               <figure className="avatar avatar-nav">
                 <Image
                   width="50px"
-                  src={user?.avatar || "/images/default_avatar.png"}
+                  src={
+                    user?.avatar?.url ||
+                    user?.avatar ||
+                    "/images/default_avatar.png"
+                  }
                   // onError={(e) => {   //it happens when the browser fails to download the image
                   //   e.target.onerror = null; // Prevents infinite loops if default is also missing
                   //   e.target.src = "/images/default_avatar.png";

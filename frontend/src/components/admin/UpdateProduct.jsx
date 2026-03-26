@@ -121,7 +121,9 @@ export default function UpdateProduct() {
       setSeller(product.seller);
       if (images.length === 0) {
         let oldImages = [];
-        product.images.forEach((image) => oldImages.push(image.image));
+        product.images.forEach((image) =>
+          oldImages.push(image.url || image.image),
+        );
         setImages(oldImages);
         setImagesPreview(oldImages);
         setisImagesCleared(false);

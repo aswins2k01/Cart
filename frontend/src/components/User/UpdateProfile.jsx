@@ -12,7 +12,7 @@ export default function UpdateProfile() {
   const [email, setEmail] = useState(user?.email || "");
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(
-    user?.avatar || "/images/default_avatar.png",
+    user?.avatar?.url || user?.avatar || "/images/default_avatar.png",
   );
 
   const onchange = (e) => {

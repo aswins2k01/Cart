@@ -4,19 +4,64 @@ const userModel = require("../models/usermodel");
 const ErrorHandler = require("../utils/errorHandler");
 const sendToken = require("../utils/jwt");
 const crypto = require("crypto");
+const cloudinary = require("../utils/cloudinary");
+const streamifier = require("streamifier");
 
 exports.registerUser = catchAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
-  let avatar;
+  // let avatar;
 
-  let BASE_URL = process.env.BACKEND_URL;
-  if (process.env.NODE_ENV === "production") {
-    BASE_URL = `${req.protocol}://${req.get("host")}`;
-  }
+  let avatar = {
+    public_id: "",
+    url: "",
+  };
 
+  // Use a Promise to handle the stream upload
   if (req.file) {
-    avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`;
+    let streamUpload = (req) => {
+      return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "avatars",
+            width: 150,
+            crop: "scale",
+          },
+          (error, result) => {
+            if (result) resolve(result);
+            else reject(error);
+          },
+        );
+
+        // This sends the data from memory to Cloudinary
+        streamifier.createReadStream(req.file.buffer).pipe(stream);
+      });
+    };
+    const result = await streamUpload(req);
+
+    avatar = {
+      public_id: result.public_id,
+      url: result.secure_url,
+    };
   }
+
+  // Now save the Cloudinary URL to MongoDB instead of a local path
+  // const user = await User.create({
+  //   name,
+  //   email,
+  //   avatar: {
+  //     public_id: result.public_id,
+  //     url: result.secure_url, // This is the link you'll use in React
+  //   },
+  // });
+
+  // let BASE_URL = process.env.BACKEND_URL;
+  // if (process.env.NODE_ENV === "production") {
+  //   BASE_URL = `${req.protocol}://${req.get("host")}`;
+  // }
+
+  // if (req.file) {
+  //   avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`;
+  // }
 
   const user = await userModel.create({
     name,
@@ -148,19 +193,57 @@ exports.update = catchAsyncError(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
   };
-  let BASE_URL = process.env.BACKEND_URL;
-  if (process.env.NODE_ENV === "production") {
-    BASE_URL = `${req.protocol}://${req.get("host")}`;
+  // let BASE_URL = process.env.BACKEND_URL;
+  // if (process.env.NODE_ENV === "production") {
+  //   BASE_URL = `${req.protocol}://${req.get("host")}`;
+  // }
+
+  // let avatar;
+  // if (req.file) {
+  //   ((avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`),
+  //     (updates = {
+  //       ...updates,
+  //       avatar,
+  //     }));
+  // }
+
+  let avatar = {
+    public_id: "",
+    url: "",
+  };
+
+  // Use a Promise to handle the stream upload
+  if (req.file) {
+    let streamUpload = (req) => {
+      return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream(
+          {
+            folder: "avatars",
+            width: 150,
+            crop: "scale",
+          },
+          (error, result) => {
+            if (result) resolve(result);
+            else reject(error);
+          },
+        );
+
+        // This sends the data from memory to Cloudinary
+        streamifier.createReadStream(req.file.buffer).pipe(stream);
+      });
+    };
+    const result = await streamUpload(req);
+
+    avatar = {
+      public_id: result.public_id,
+      url: result.secure_url,
+    };
   }
 
-  let avatar;
-  if (req.file) {
-    ((avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`),
-      (updates = {
-        ...updates,
-        avatar,
-      }));
-  }
+  updates = {
+    ...updates,
+    avatar,
+  };
   const user = await userModel.findByIdAndUpdate(req.user.id, updates, {
     new: true,
     runValidators: true,

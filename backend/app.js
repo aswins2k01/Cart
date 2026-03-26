@@ -10,6 +10,10 @@ const order = require("./routes/order");
 const payment = require("./routes/payment");
 const cookieParser = require("cookie-parser");
 
+app.get("/ping", (req, res) => {
+  res.status(200).send("pong");
+});
+
 app.set("query parser", "extended");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

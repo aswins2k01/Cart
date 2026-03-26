@@ -1,18 +1,24 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, "..", "/uploads/user"));
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    },
-  }),
-});
 const router = express.Router();
+
+// const upload = multer({
+//   storage: multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, path.join(__dirname, "..", "/uploads/user"));
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, file.originalname);
+//     },
+//   }),
+// });
+
+// Switch from diskStorage to memoryStorage
+const storage = multer.memoryStorage();
+
+const upload = multer({ storage });
+
 const {
   registerUser,
   loginUser,

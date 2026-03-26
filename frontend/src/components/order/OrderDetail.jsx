@@ -23,7 +23,8 @@ export default function OrderDetail() {
     paymentInfo = {},
   } = orderDetail;
 
-  const isPaid = paymentInfo && paymentInfo.status === "success" ? true : false;
+  const isPaid =
+    paymentInfo && paymentInfo.status === "succeeded" ? true : false;
 
   return (
     <Fragment>

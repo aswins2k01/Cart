@@ -22,7 +22,12 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
   avatar: {
-    type: String,
+    public_id: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
   },
   passwordResetToken: String,
   passwordResetTokenExpire: Date,

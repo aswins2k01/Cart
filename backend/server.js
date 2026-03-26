@@ -4,10 +4,9 @@ process.on("uncaughtException", (err) => {
   console.log("Shutting down due to the uncaught error");
   process.exit();
 });
-const express = require("express");
+
 const app = require("./app");
 
-const path = require("path");
 const databaseConnect = require("./config/db");
 
 databaseConnect();
@@ -25,3 +24,15 @@ process.on("unhandledRejection", (err) => {
     process.exit();
   });
 });
+
+const axios = require("axios");
+
+const URL = `https://aswin-cart-app.onrender.com/ping`;
+
+// Keep-alive logic
+setInterval(() => {
+  axios
+    .get(URL)
+    .then(() => console.log("Keep-alive: Self-ping successful"))
+    .catch((err) => console.error("Keep-alive: Self-ping failed", err.message));
+}, 840000); // 14 minutes

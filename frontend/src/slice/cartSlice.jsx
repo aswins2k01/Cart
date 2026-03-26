@@ -55,7 +55,7 @@ const productSlice = createSlice({
       localStorage.setItem("shippingInfo", JSON.stringify(action.payload));
       state.shippingInfo = action.payload;
     },
-    orderCompleted(state, action) {
+    orderCompleted(state) {
       localStorage.removeItem("shippingInfo");
       localStorage.removeItem("cartItems");
       sessionStorage.removeItem("orderInfo");
