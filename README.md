@@ -11,7 +11,7 @@ A modern, responsive E-commerce platform built with the **MERN Stack**. This pro
 | Desktop View | Mobile View |
 | :---: | :---: |
 | <img src="./screenshots/desktop-home.png" width="550" alt="Desktop Home"> | <img src="./screenshots/mobile-home.png" width="180" alt="Mobile View"> |
-| <img src="./screenshots/mobile-home-2.png" width="180" alt="Mobile View"> |
+                                                                            | <img src="./screenshots/mobile-home-2.png" width="180" alt="Mobile View"> |
 | <img src="./screenshots/desktop-payment.png" width="550" alt="Desktop Home"> | <img src="./screenshots/mobile-payment.png" width="180" alt="Mobile View"> |
 | <img src="./screenshots/desktop-login.png" width="550" alt="Desktop Home"> | <img src="./screenshots/mobile-login.png" width="180" alt="Mobile View"> |
 | <img src="./screenshots/desktop-cart.png" width="550" alt="Desktop Home"> | <img src="./screenshots/mobile-cart.png" width="180" alt="Mobile View"> |
