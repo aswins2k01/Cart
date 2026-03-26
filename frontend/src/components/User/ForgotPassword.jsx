@@ -8,6 +8,7 @@ import {
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import Loader from "../layouts/Loader";
+import Metadata from "../layouts/Metadata";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -48,6 +49,7 @@ export default function ForgotPassword() {
 
   return (
     <Fragment>
+      <Metadata title={"Forgot password"} />
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
           <form className="shadow-lg" onSubmit={submitHandler}>

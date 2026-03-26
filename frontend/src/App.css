@@ -360,12 +360,49 @@ footer {
 }
 
 .checkout-progress {
-  display: block;
-  clear: both;
+  /* display: block;
+   clear: both;
   margin: 20px auto;
   width: auto;
   font-family: sans-serif;
-  overflow: auto;
+  overflow: auto;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow-x: auto; /* Adds scrolling if it overflows */
+  white-space: nowrap; /* Prevents text from wrapping to a new line */
+  padding: 10px 0
+}
+
+ /* @media (max-width: 576px) { */
+  /* .checkout-progress a { */
+    /* font-size: 10px; Smaller text */
+  /* } */
+  /* .step:not(.active) span { */
+    /* display: none;  */
+  /* } */
+/* }   */
+
+@media (max-width: 576px) {
+  /* Shrink the triangles */
+  .triangle-active, .triangle-incomplete, 
+  .triangle2-active, .triangle2-incomplete {
+    border-left-width: 10px !important; /* Half size */
+    border-top-width: 15px !important;
+    border-bottom-width: 15px !important;
+  }
+
+  /* Shrink the text steps so they don't push the triangles out */
+  .step {
+    padding: 5px 10px !important;
+    font-size: 10px !important;
+  }
+
+  /* Reduce margins to keep them tight together */
+  .checkout-progress a {
+    margin: 0 2px !important;
+  }
 }
 
 .step {
@@ -380,6 +417,8 @@ footer {
   font-weight: bold;
   float: left;
   height: auto;
+  flex: 0 0 auto; 
+  min-width: 120px;
 }
 
 .incomplete {
@@ -390,6 +429,7 @@ footer {
   background: #fa9c23;
   color: #fff;
 }
+
 
 .triangle-active {
   float: left;
@@ -425,7 +465,7 @@ footer {
   border-left: 15px solid #fff;
   border-bottom: 20px solid #eeeeee;
   margin-right: -1px;
-}
+} 
 
 /* User Profile */
 

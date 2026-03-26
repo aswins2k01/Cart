@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 export default function CheckOutSteps({ shipping, confirmOrder, payment }) {
   return (
-    <div className="checkout-progress d-flex justify-content-center mt-5">
+    <div className="checkout-progress  d-none d-md-flex flex-nowrap  overflow-auto justify-content-center mt-5">
       {shipping ? (
         <Link to="/shipping">
           <div className="triangle2-active"></div>

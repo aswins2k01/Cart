@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   updatePassword as updatePasswordAction,
   clearAuthError,
 } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import Metadata from "../layouts/Metadata";
 
 export default function UpdatePassword() {
   const [oldPassword, setoldPassword] = useState("");
@@ -42,37 +43,44 @@ export default function UpdatePassword() {
   }, [message, error, dispatch]);
 
   return (
-    <div className="row wrapper">
-      <div className="col-10 col-lg-5">
-        <form className="shadow-lg" onSubmit={submitHandler}>
-          <h1 className="mt-2 mb-5">Update Password</h1>
-          <div className="form-group">
-            <label htmlFor="old_password_field">Old Password</label>
-            <input
-              type="password"
-              id="old_password_field"
-              className="form-control"
-              value={oldPassword}
-              onChange={(e) => setoldPassword(e.target.value)}
-            />
-          </div>
+    <Fragment>
+      <Metadata title={"Update Password"} />
 
-          <div className="form-group">
-            <label htmlFor="new_password_field">New Password</label>
-            <input
-              type="password"
-              id="new_password_field"
-              className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+      <div className="row wrapper">
+        <div className="col-10 col-lg-5">
+          <form className="shadow-lg" onSubmit={submitHandler}>
+            <h1 className="mt-2 mb-5">Update Password</h1>
+            <div className="form-group">
+              <label htmlFor="old_password_field">Old Password</label>
+              <input
+                type="password"
+                id="old_password_field"
+                className="form-control"
+                value={oldPassword}
+                onChange={(e) => setoldPassword(e.target.value)}
+              />
+            </div>
 
-          <button type="submit" className="btn update-btn btn-block mt-4 mb-3">
-            Update Password
-          </button>
-        </form>
+            <div className="form-group">
+              <label htmlFor="new_password_field">New Password</label>
+              <input
+                type="password"
+                id="new_password_field"
+                className="form-control"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn update-btn btn-block mt-4 mb-3"
+            >
+              Update Password
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 }

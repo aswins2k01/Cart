@@ -61,50 +61,19 @@ export default function ProductSearch() {
 
   return (
     <Fragment>
-      {/* {totalItemsCount == 0 ? (
-        <div className="row align-items-center " style={{ minHeight: "70vh" }}>
-          <div
-            className="col-12 col-md-3 mb-5 mt-5"
-            style={{ minHeight: "20vh" }}
-          >
-            <div className="px-5" onMouseUp={() => setChangedPrice(price)}>
-              <Slider
-                range
-                min={1}
-                max={1000}
-                marks={{ 1: "$1", 1000: "$1000" }}
-                defaultValue={price}
-                handleRender={(renderProps) => {
-                  return (
-                    <Tooltip overlay={`$${renderProps.props["aria-valuenow"]}`}>
-                      {<div {...renderProps.props}></div>}
-                    </Tooltip>
-                  );
-                }}
-                onChange={(price) => {
-                  setPrice(price);
-                }}
-              />
-            </div>
-          </div>
-          <div className=" col-12 col-md-9 text-center">
-            <div style={{ paddingRight: "30%" }}>
-              <h1>No Match Found</h1>
-              <p>Try searching for something else </p>
-            </div>
-          </div>
-        </div>
-      ) : ( */}
       <Fragment>
         {loading ? (
           <Loader />
         ) : (
           <Fragment>
             <Metadata title={"Buy Best Products"} />
-            <h1 id="products_heading">Search Products</h1>
+            <h1 id="products_heading">
+              {products?.length === 0 ? "No match Found" : "Products Found"}
+            </h1>
             <section id="products" className="container-fluid mt-5">
               <div className="row g-0">
                 <div className="col-12 col-md-3 mb-5  mt-5">
+                  <h3 className="pb-3">Filter Products</h3>
                   <div
                     className="pl-0 ml-0 mb-5 pr-5"
                     onMouseUp={() => setChangedPrice(price)}

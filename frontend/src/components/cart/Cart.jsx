@@ -6,6 +6,7 @@ import {
   decreaseCartItemQty,
   removeCartItem,
 } from "../../slice/cartSlice";
+import Metadata from "../layouts/Metadata";
 
 export default function Cart() {
   const { isAuthenticated } = useSelector((state) => state.authState);
@@ -34,6 +35,8 @@ export default function Cart() {
   };
   return (
     <Fragment>
+      <Metadata title={"My cart"} />
+
       {items.length == 0 ? (
         <h2 className=" mt-5 empty-cart">
           Your Cart is <b>Empty</b>

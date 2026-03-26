@@ -20,6 +20,7 @@ const reducer = combineReducers({
 const store = configureStore({
   reducer,
   //   middleware: [thunk],
+  // devTools: false,
 });
 
 export default store;

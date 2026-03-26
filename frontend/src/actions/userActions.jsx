@@ -85,8 +85,6 @@ export const loadUser = () => async (dispatch) => {
     } else {
       dispatch(loadUserFail(error.response.data.message));
     }
-    // console.warn("Silent Check: No active session found.");
-    // dispatch({ type: "LOAD_USER_FINISH" });
   }
 };
 

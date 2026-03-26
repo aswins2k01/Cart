@@ -15,6 +15,7 @@ import CheckOutSteps from "./CheckOutSteps";
 import { validateOrder } from "../../utils/validateOrder";
 import { validateCart } from "../../utils/validateCart";
 import { createOrder } from "../../actions/orderActions";
+import Metadata from "../layouts/Metadata";
 
 export default function Payment() {
   const stripe = useStripe();
@@ -144,6 +145,7 @@ export default function Payment() {
 
   return (
     <Fragment>
+      <Metadata title={"Payment"} />
       <CheckOutSteps shipping confirmOrder payment />
       <div className="row wrapper">
         <div className="col-10 col-lg-5">

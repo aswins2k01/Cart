@@ -71,7 +71,9 @@ export default function Home() {
       ) : (
         <Fragment>
           <Metadata title={"Buy Best Products"} />
-          <h1 id="products_heading">Latest Products</h1>
+          <h1 id="products_heading">
+            {products?.length === 0 ? "No match Found" : "Latest Products"}
+          </h1>
           <section id="products" className="container mt-5">
             <div className="row">
               <div className="col-12 col-md-3 mb-5  mt-5">

@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { clearAuthError, updateProfile } from "../../actions/userActions";
 import { toast } from "react-toastify";
 import { clearUpdateUserToast } from "../../slice/authSlice";
+import Metadata from "../layouts/Metadata";
 
 export default function UpdateProfile() {
   const { user, isUpdated, error } = useSelector((state) => state.authState);
@@ -68,75 +69,82 @@ export default function UpdateProfile() {
     }
   }, [user, dispatch, error, isUpdated, setName, setEmail, setAvatarPreview]);
   return (
-    <div className="row wrapper">
-      <div className="col-10 col-lg-5">
-        <form
-          className="shadow-lg"
-          onSubmit={submitHandler}
-          encType="multipart/form-data"
-        >
-          <h1 className="mt-2 mb-5">Update Profile</h1>
+    <Fragment>
+      <Metadata title={"Update Profile"} />
 
-          <div className="form-group">
-            <label htmlFor="name_field">Name</label>
-            <input
-              type="name"
-              id="name_field"
-              className="form-control"
-              name="name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-          </div>
+      <div className="row wrapper">
+        <div className="col-10 col-lg-5">
+          <form
+            className="shadow-lg"
+            onSubmit={submitHandler}
+            encType="multipart/form-data"
+          >
+            <h1 className="mt-2 mb-5">Update Profile</h1>
 
-          <div className="form-group">
-            <label htmlFor="email_field">Email</label>
-            <input
-              type="email"
-              id="email_field"
-              className="form-control"
-              name="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-          </div>
+            <div className="form-group">
+              <label htmlFor="name_field">Name</label>
+              <input
+                type="name"
+                id="name_field"
+                className="form-control"
+                name="name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="avatar_upload">Avatar</label>
-            <div className="d-flex align-items-center">
-              <div>
-                <figure className="avatar mr-3 item-rtl">
-                  <img
-                    src={avatarPreview}
-                    className="rounded-circle"
-                    alt="Avatar Preview"
+            <div className="form-group">
+              <label htmlFor="email_field">Email</label>
+              <input
+                type="email"
+                id="email_field"
+                className="form-control"
+                name="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="avatar_upload">Avatar</label>
+              <div className="d-flex align-items-center">
+                <div>
+                  <figure className="avatar mr-3 item-rtl">
+                    <img
+                      src={avatarPreview}
+                      className="rounded-circle"
+                      alt="Avatar Preview"
+                    />
+                  </figure>
+                </div>
+                <div className="custom-file">
+                  <input
+                    type="file"
+                    name="avatar"
+                    onChange={onchange}
+                    className="custom-file-input"
+                    id="customFile"
                   />
-                </figure>
-              </div>
-              <div className="custom-file">
-                <input
-                  type="file"
-                  name="avatar"
-                  onChange={onchange}
-                  className="custom-file-input"
-                  id="customFile"
-                />
-                <label className="custom-file-label" htmlFor="customFile">
-                  Choose Avatar
-                </label>
+                  <label className="custom-file-label" htmlFor="customFile">
+                    Choose Avatar
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <button type="submit" className="btn update-btn btn-block mt-4 mb-3">
-            Update
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="btn update-btn btn-block mt-4 mb-3"
+            >
+              Update
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 }

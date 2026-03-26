@@ -13,6 +13,23 @@ export default function ConfirmOrder() {
   const { user } = useSelector((state) => state.authState);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const isValidCart = validateCart(cartItems, navigate);
+
+    if (isValidCart) {
+      validateShipping(shippingInfo, navigate);
+    }
+  }, [navigate, cartItems, shippingInfo]);
+
+  if (
+    !cartItems ||
+    cartItems.length === 0 ||
+    !shippingInfo ||
+    !shippingInfo.address
+  ) {
+    return null; // This prevents the HTML below from ever being seen
+  }
+
   const subTotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,
@@ -32,20 +49,12 @@ export default function ConfirmOrder() {
   //   validateCart(cartItems, navigate);
   // }, [navigate, cartItems]);
 
-  useEffect(() => {
-    const isValidCart = validateCart(cartItems, navigate);
-
-    if (isValidCart) {
-      validateShipping(shippingInfo, navigate, cartItems);
-    }
-  }, [navigate, cartItems, shippingInfo]);
-
-  if (!cartItems || cartItems.length === 0) {
-    return null;
-  }
-  if (!shippingInfo) {
-    return null;
-  }
+  // if (!shippingInfo) {
+  //   return null;
+  // }
+  // if (!cartItems || cartItems.length === 0) {
+  //   return null;
+  // }
 
   return (
     <Fragment>

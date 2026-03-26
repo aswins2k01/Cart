@@ -7,6 +7,7 @@ import { saveShippingInfo } from "../../slice/cartSlice";
 import { useNavigate } from "react-router-dom";
 import CheckOutSteps from "./CheckOutSteps";
 import { validateCart } from "../../utils/validateCart";
+import Metadata from "../layouts/Metadata";
 
 export default function Shipping() {
   const { shippingInfo = {} } = useSelector((state) => state.cartState);
@@ -46,6 +47,8 @@ export default function Shipping() {
   }
   return (
     <Fragment>
+      <Metadata title={"Update Password"} />
+
       <CheckOutSteps shipping />
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
