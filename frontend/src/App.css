@@ -736,6 +736,21 @@ footer {
   }
 }
 
+
+/* Target the custom-file input   */
+.custom-file-input {
+  width: 100%;
+  margin: 0;
+}
+
+/* Ensure the label text doesn't wrap  */
+.custom-file-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 80px; /* Make room for the 'Browse' button */
+}
+
 /* .empty-cart{
   margin-top: 15rem;
   padding-left: 400px;

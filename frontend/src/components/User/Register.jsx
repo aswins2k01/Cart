@@ -66,7 +66,7 @@ export default function Register() {
     <Fragment>
       <Metadata title={"Register"} />
       <div className="row wrapper">
-        <div className="col-10 col-lg-5">
+        <div className="col-12 col-lg-5">
           <form
             className="shadow-lg"
             encType="multipart/form-data"
