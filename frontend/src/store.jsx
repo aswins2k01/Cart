@@ -20,7 +20,7 @@ const reducer = combineReducers({
 const store = configureStore({
   reducer,
   //   middleware: [thunk],
-  // devTools: false,
+  devTools: import.meta.env.MODE !== "production",
 });
 
 export default store;
