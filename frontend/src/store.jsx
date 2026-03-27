@@ -7,7 +7,7 @@ import authReducer from "./slice/authSlice";
 import cartReducer from "./slice/cartSlice";
 import orderReducer from "./slice/orderSlice";
 import userReducer from "./slice/userSlice";
-
+// console.log("Vite Mode:", import.meta.env.MODE);
 const reducer = combineReducers({
   productsState: productsReducer,
   productState: productReducer,
